@@ -1,0 +1,104 @@
+{
+  "contractName": "Adoption",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/forzablu46/Documents/Demo/contracts/Adoption.sol\":\"Adoption\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/forzablu46/Documents/Demo/contracts/Adoption.sol\":{\"keccak256\":\"0xfd9dac739d698a49464807655e3f86992a29fc340acb8739af0423bbfd9df821\",\"urls\":[\"bzz-raw://3079d87dea6762d95302486a8901ff69c3c8dc2500842a62792e5ac2319d0583\",\"dweb:/ipfs/QmXL1CJqMR4bnKaHXAsKLP5PsNJ8ubLAU9GiZhxWXBsmm6\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820982ac36521950f5e1da92829d7806513a2a4967b91d46e250576ce67749d0eaa64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820982ac36521950f5e1da92829d7806513a2a4967b91d46e250576ce67749d0eaa64736f6c63430005100032",
+  "sourceMap": "25:21:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:21:0;;;;;;;",
+  "deployedSourceMap": "25:21:0:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\ncontract Adoption{\n\n}\n",
+  "sourcePath": "/home/forzablu46/Documents/Demo/contracts/Adoption.sol",
+  "ast": {
+    "absolutePath": "/home/forzablu46/Documents/Demo/contracts/Adoption.sol",
+    "exportedSymbols": {
+      "Adoption": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Adoption",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "25:21:0"
+      }
+    ],
+    "src": "0:47:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/forzablu46/Documents/Demo/contracts/Adoption.sol",
+    "exportedSymbols": {
+      "Adoption": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Adoption",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "25:21:0"
+      }
+    ],
+    "src": "0:47:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2020-11-28T18:03:19.272Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
