@@ -1,5 +1,4 @@
-pragma solidity ^0.5.0;
-
+pragma solidity >=0.4.22 <0.7.0;
 
 contract Purchase {
     uint256 public value;
@@ -55,7 +54,6 @@ contract Purchase {
         // last call in this function and we
         // already changed the state.
         seller.transfer(address(this).balance);
-        state = State.Created;
     }
 
     /// Confirm the purchase as buyer.
@@ -95,8 +93,5 @@ contract Purchase {
         state = State.Inactive;
 
         seller.transfer(3 * value);
-
-        state = State.Created;
     }
 }
-

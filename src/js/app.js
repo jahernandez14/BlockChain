@@ -1,6 +1,6 @@
-var transactionInstance;
-var contract;
-
+// ENTER SELLER AND BUYER ADDRESSES HERE
+var SELLER_ADDR = "0xd88FDc8BE77006B755244247936ED3C61895F331";
+var BUYER_ADDR = "0xbb8d5585C89060fcF1Ab920d81fE593199eD81Ee";
 App = {
   web3Provider: null,
   contracts: {},
@@ -12,6 +12,7 @@ App = {
   initWeb3: async function () {
     // Modern dapp browsers...
     if (window.ethereum) {
+      console.log(window.ethereum)
       App.web3Provider = window.ethereum;
       try {
         // Request account access
@@ -36,6 +37,7 @@ App = {
     return App.initContract();
   },
 
+
   initContract: function () {
     $.getJSON("Purchase.json", function (data) {
       // Get the necessary contract artifact file and instantiate it with @truffle/contract
@@ -49,57 +51,83 @@ App = {
   },
 
   bindEvents: function () {
-    $(document).on("click", ".seller", App.sellerEvent);
-    $(document).on("click", ".buyer", App.buyerEvent);
-    $(document).on("click", ".cancel", App.cancelEvent);
-    $(document).on("click", ".complete", App.completeEvent);
-    $(document).on("click", ".confirm", App.confirmEvent);
-    $(document).on("click", ".received", App.receivedEvent);
+    $(document).on("click", ".seller", App.handleSeller);
+    $(document).on("click", ".buyer", App.handleBuyer);
+    $(document).on("click", ".abort", App.handleAbort);
+    $(document).on("click", ".complete", App.handleRefundSeller);
+    $(document).on("click", ".confirmpurchase", App.handleConfirmPurchase);
+    $(document).on("click", ".confirm-received", App.handleConfirmReceived);
+    $(document).on("click", ".state", App.handleState);
   },
 
-  sellerEvent: function (event) {
-    // var buyerAccount = "0x05bBCA5A53C1D93D7e1cE3231ffecC98d46bdb08";
-    // alert("Buyer Account: " + buyerAccount);
-    window.location.href = "./seller.html";
-    console.log("test");
+  handleAbort() {
+    var purchaseinstance;
+    App.contracts.Purchase.deployed().then(instance => {
+      purchaseinstance = instance;
+      return purchaseinstance.abort({ from: SELLER_ADDR });
+    }).catch(err => console.log(err.message));
   },
 
-  buyerEvent: function (event) {
-    // var sellerAccount = "0xCAf8e61acF4F4E96aC35020b458d4Dd6639d5Af8";
-    // alert("Seller Account: " + sellerAccount);
-    window.location.href = "./buyer.html";
-    console.log("test");
+  handleConfirmPurchase() {
+    var purchaseinstance;
+    console.log("Inside confirm purchase");
+    App.contracts.Purchase.deployed().then(instance => {
+      console.log(instance);
+      purchaseinstance = instance;
+      return purchaseinstance.confirmPurchase({ from: BUYER_ADDR, value: "2000000000000000000" });
+    }).catch(err => console.log(message));
   },
 
-  cancelEvent: function (event) {
-    alert(
-      "Transaction has been canceled, ether has been refunded. Block has been mined"
-    );
-    console.log("test");
+  handleConfirmReceived() {
+    var purchaseinstance;
+    App.contracts.Purchase.deployed().then(instance => {
+      purchaseinstance = instance;
+      return purchaseinstance.confirmReceived({ from: BUYER_ADDR });
+    }).then(result => console.log(result)).catch(err => console.log(message));
   },
 
-  completeEvent: function (event) {
-    alert("Transaction has been completed, block has been mined");
-    console.log("test");
+  handleRefundSeller() {
+    console.log('refunding seller ', SELLER_ADDR);
+
+    var purchaseinstance;
+    App.contracts.Purchase.deployed().then(instance => {
+      purchaseinstance = instance;
+      return purchaseinstance.refundSeller({ from: SELLER_ADDR });
+    }).then(result => console.log(result)).catch(err => console.log(err.message));
   },
 
-  confirmEvent: function () {
-    App.contracts.Purchase.deployed()
-      .then(function (instance) {
-        transactionInstance = instance;
-        return transactionInstance.confirmPurchase();
-      })
-      .catch(function (err) {
-        console.log(err.message);
+  handleState() {
+    var purchaseinstance;
+    App.contracts.Purchase.deployed().then(instance => {
+      purchaseinstance = instance;
+      purchaseinstance.state.call().then(value => {
+        console.log(value)
+        return value;
       });
-
-    alert("Item has been purchased.");
+    }).catch(err => console.log(err.message));
   },
 
-  receivedEvent: function (event) {
-    alert("You successfully confirmed that the item has been received");
-    console.log("test");
+  handleSeller() {
+    var purchaseinstance;
+    App.contracts.Purchase.deployed().then(instance => {
+      purchaseinstance = instance;
+      purchaseinstance.seller.call().then(value => {
+        console.log(value)
+        return value;
+      });
+    }).catch(err => console.log(err.message));
   },
+
+  handleBuyer() {
+    var purchaseinstance;
+    App.contracts.Purchase.deployed().then(instance => {
+      purchaseinstance = instance;
+      purchaseinstance.buyer.call().then(value => {
+        console.log(value)
+        return value;
+      });
+    }).catch(err => console.log(err.message));
+  }
 };
 
 $(function () {

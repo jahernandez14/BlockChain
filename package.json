@@ -1,5 +1,5 @@
 {
-  "name": "pet-shop",
+  "name": "purchase",
   "version": "1.0.0",
   "description": "",
   "main": "truffle.js",
@@ -15,5 +15,8 @@
   "devDependencies": {
     "lite-server": "^2.3.0",
     "prettier": "2.2.1"
+  },
+  "dependencies": {
+    "common-js": "^0.3.8"
   }
 }
